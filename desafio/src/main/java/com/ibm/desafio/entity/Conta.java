@@ -1,6 +1,5 @@
 package com.ibm.desafio.entity;
 
-import com.ibm.desafio.entity.enums.TipoConta;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -15,8 +14,8 @@ public class Conta {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private String id;
-    @Column(name = "conta")
-    private String conta;
+    @Column(name = "tipoConta")
+    private String tipoConta;
     @Column(name = "numeroConta")
     private String numeroConta;
     @Column(name = "saldo")
@@ -30,12 +29,12 @@ public class Conta {
         this.id = id;
     }
 
-    public String getConta() {
-        return conta;
+    public String getTipoConta() {
+        return tipoConta;
     }
 
-    public void setConta(String conta) {
-        this.conta = conta;
+    public void setTipoConta(String tipoConta) {
+        this.tipoConta = tipoConta;
     }
 
     public String getNumeroConta() {
