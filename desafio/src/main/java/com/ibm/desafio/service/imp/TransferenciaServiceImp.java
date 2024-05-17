@@ -2,9 +2,9 @@ package com.ibm.desafio.service.imp;
 
 import com.ibm.desafio.entity.Conta;
 import com.ibm.desafio.repository.ContaRepository;
+import com.ibm.desafio.service.ExtratoService;
 import com.ibm.desafio.service.TransferenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +13,9 @@ public class TransferenciaServiceImp implements TransferenciaService {
 
     @Autowired
     ContaRepository contaRepository;
+    @Autowired
+    ExtratoService extratoService;
+
     public ResponseEntity transferencia(String numeroContaSaque,String numeroContaRecebe, Double valor){
         if(valor <= 0){
             return ResponseEntity.badRequest().body("O valor informado não pode ser 0 ou negativo.");

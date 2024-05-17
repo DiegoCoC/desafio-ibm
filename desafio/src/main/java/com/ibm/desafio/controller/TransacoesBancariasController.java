@@ -10,10 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/transacao")
@@ -49,11 +46,11 @@ public class TransacoesBancariasController {
         return transferenciaService.transferencia(dto.getNumeroContaSaque(), dto.getNumeroContaRecebe(), dto.getValor());
     }
 
-    @Operation(summary = "Trânsferencia bancário", description = "Este end-point é responsavel por realizar a trânsferencia bancária entre contas")
-    @PostMapping("/extrato")
+    @Operation(summary = "Extrato bancário", description = "Este end-point é responsavel por realizar o Extrato bancária")
+    @GetMapping("/extrato")
     public ResponseEntity extrato(@RequestBody @Validated String conta) {
 
-        return  extratoService.extrato(conta);
+        return  extratoService.buscarExtrato(conta);
     }
 
 
