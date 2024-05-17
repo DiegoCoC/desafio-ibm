@@ -23,6 +23,6 @@ public class CriarContaImp implements CriarConta {
 
         clienteRepository.save(cliente);
 
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body("Conta criada com sucesso!");
     }
 }

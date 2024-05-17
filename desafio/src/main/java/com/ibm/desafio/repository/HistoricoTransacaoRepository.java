@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HistoricoTransacaoRepository extends JpaRepository<HistoricoTransacao, String> {
+
+    HistoricoTransacao findByNumeroConta(String conta);
 }

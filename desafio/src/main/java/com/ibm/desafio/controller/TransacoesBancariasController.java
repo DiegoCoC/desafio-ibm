@@ -3,6 +3,7 @@ package com.ibm.desafio.controller;
 import com.ibm.desafio.entity.DTO.TransacaoDTO;
 import com.ibm.desafio.entity.DTO.TransferenciaDTO;
 import com.ibm.desafio.service.DepositoService;
+import com.ibm.desafio.service.ExtratoService;
 import com.ibm.desafio.service.SaqueService;
 import com.ibm.desafio.service.TransferenciaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,38 +20,40 @@ import org.springframework.web.bind.annotation.RestController;
 public class TransacoesBancariasController {
 
     @Autowired
-    DepositoService iDepositoService;
+    DepositoService depositoService;
     @Autowired
-    SaqueService iSaqueService;
+    SaqueService saqueService;
     @Autowired
-    TransferenciaService iTransferenciaService;
+    TransferenciaService transferenciaService;
+    @Autowired
+    ExtratoService extratoService;
 
     @Operation(summary = "Depósito bancário", description = "Este end-point é responsavel por realizar o depósito bancário")
     @PostMapping("/deposito")
     public ResponseEntity depositoCliente(@RequestBody @Validated TransacaoDTO dto) {
 
-        return iDepositoService.deposito(dto.getNumeroConta(), dto.getValor());
+        return depositoService.deposito(dto.getNumeroConta(), dto.getValor());
     }
 
     @Operation(summary = "Saque bancário", description = "Este end-point é responsavel por realizar o saque bancário")
     @PostMapping("/saque")
     public ResponseEntity saqueCliente(@RequestBody @Validated TransacaoDTO dto) {
 
-        return iSaqueService.saque(dto.getNumeroConta(), dto.getValor());
+        return saqueService.saque(dto.getNumeroConta(), dto.getValor());
     }
 
     @Operation(summary = "Trânsferencia bancário", description = "Este end-point é responsavel por realizar a trânsferencia bancária entre contas")
     @PostMapping("/transferencia")
     public ResponseEntity transferenciaCliente(@RequestBody @Validated TransferenciaDTO dto) {
 
-        return iTransferenciaService.transferencia(dto.getNumeroContaSaque(), dto.getNumeroContaRecebe(), dto.getValor());
+        return transferenciaService.transferencia(dto.getNumeroContaSaque(), dto.getNumeroContaRecebe(), dto.getValor());
     }
 
     @Operation(summary = "Trânsferencia bancário", description = "Este end-point é responsavel por realizar a trânsferencia bancária entre contas")
     @PostMapping("/extrato")
     public ResponseEntity extrato(@RequestBody @Validated String conta) {
 
-        return null;
+        return  extratoService.extrato(conta);
     }
 
 
