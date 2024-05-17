@@ -1,9 +1,17 @@
 package com.ibm.desafio.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "cliente")
-@Entity(name = "cliente")
+@Entity()
 public class Cliente {
 
     @Id
@@ -18,6 +26,7 @@ public class Cliente {
     private String endereco;
     @Column(name = "email")
     private String email;
-    @Column(name = "numero")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "conta_id")
     private Conta numero;
 }
