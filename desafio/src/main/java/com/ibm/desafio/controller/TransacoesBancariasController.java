@@ -1,5 +1,6 @@
 package com.ibm.desafio.controller;
 
+import com.ibm.desafio.entity.DTO.ExtratoRequestDTO;
 import com.ibm.desafio.entity.DTO.TransacaoDTO;
 import com.ibm.desafio.entity.DTO.TransferenciaDTO;
 import com.ibm.desafio.service.DepositoService;
@@ -48,9 +49,9 @@ public class TransacoesBancariasController {
 
     @Operation(summary = "Extrato bancário", description = "Este end-point é responsavel por realizar o Extrato bancária")
     @GetMapping("/extrato")
-    public ResponseEntity extrato(@RequestBody @Validated String conta) {
+    public ResponseEntity extrato(@RequestBody @Validated ExtratoRequestDTO numeroConta) {
 
-        return  extratoService.buscarExtrato(conta);
+        return  extratoService.buscarExtrato(numeroConta);
     }
 
 

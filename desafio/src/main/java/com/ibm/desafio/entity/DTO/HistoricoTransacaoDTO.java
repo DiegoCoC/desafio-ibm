@@ -1,43 +1,17 @@
-package com.ibm.desafio.entity;
-
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+package com.ibm.desafio.entity.DTO;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "historico")
-@Entity()
-public class HistoricoTransacao {
+public class HistoricoTransacaoDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id")
-    private String id;
-    @Column(name = "nome")
     private String nome;
-    @Column(name = "tipoConta")
     private String tipoConta;
-    @Column(name = "numeroConta")
     private String numeroConta;
-    @Column(name = "saldo")
     private Double saldo;
-    @Column(name = "transacao")
     private String transacao;
-    @Column(name = "valor")
     private Double valor;
-    @Column(name = "data")
     private LocalDateTime data;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -94,4 +68,5 @@ public class HistoricoTransacao {
     public void setData(LocalDateTime data) {
         this.data = data;
     }
+
 }
