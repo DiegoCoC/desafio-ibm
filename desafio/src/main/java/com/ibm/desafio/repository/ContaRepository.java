@@ -7,4 +7,6 @@ import org.springframework.http.ResponseEntity;
 public interface ContaRepository extends JpaRepository<Conta, String> {
 
     public Conta findByNumeroConta(String numeroConta);
+
+    boolean existsByNumeroConta(String numeroConta);
 }
