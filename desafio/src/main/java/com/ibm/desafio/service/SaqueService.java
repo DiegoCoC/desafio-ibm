@@ -4,5 +4,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface SaqueService {
 
-    ResponseEntity saque(String numeroConta, Double valor);
+    ResponseEntity saque(String numeroContaSaque, Double valor, String tipoTransacao);
 }

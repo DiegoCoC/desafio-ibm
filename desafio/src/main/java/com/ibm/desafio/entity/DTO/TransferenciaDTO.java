@@ -5,6 +5,15 @@ public class TransferenciaDTO {
     private String numeroContaSaque;
     private String numeroContaRecebe;
     private Double valor;
+    private String tipoTransacao;
+
+    public String getTipoTransacao() {
+        return tipoTransacao;
+    }
+
+    public void setTipoTransacao(String tipoTransacao) {
+        this.tipoTransacao = tipoTransacao;
+    }
 
     public String getNumeroContaSaque() {
         return numeroContaSaque;

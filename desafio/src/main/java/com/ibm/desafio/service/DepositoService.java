@@ -4,6 +4,6 @@ import org.springframework.http.ResponseEntity;
 
 public interface DepositoService {
 
-    ResponseEntity deposito(String numeroConta, Double valor);
+    ResponseEntity deposito(String numeroContaDeposito, Double valor, String tipoTransacao);
 
 }

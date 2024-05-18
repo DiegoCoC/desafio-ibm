@@ -30,21 +30,21 @@ public class TransacoesBancariasController {
     @PostMapping("/deposito")
     public ResponseEntity depositoCliente(@RequestBody @Validated TransacaoDTO dto) {
 
-        return depositoService.deposito(dto.getNumeroConta(), dto.getValor());
+        return depositoService.deposito(dto.getNumeroConta(), dto.getValor(), dto.getTipoTransacao());
     }
 
     @Operation(summary = "Saque bancário", description = "Este end-point é responsavel por realizar o saque bancário")
     @PostMapping("/saque")
     public ResponseEntity saqueCliente(@RequestBody @Validated TransacaoDTO dto) {
 
-        return saqueService.saque(dto.getNumeroConta(), dto.getValor());
+        return saqueService.saque(dto.getNumeroConta(), dto.getValor(), dto.getTipoTransacao());
     }
 
     @Operation(summary = "Trânsferencia bancário", description = "Este end-point é responsavel por realizar a trânsferencia bancária entre contas")
     @PostMapping("/transferencia")
     public ResponseEntity transferenciaCliente(@RequestBody @Validated TransferenciaDTO dto) {
 
-        return transferenciaService.transferencia(dto.getNumeroContaSaque(), dto.getNumeroContaRecebe(), dto.getValor());
+        return transferenciaService.transferencia(dto.getNumeroContaSaque(), dto.getNumeroContaRecebe(), dto.getValor(), dto.getTipoTransacao());
     }
 
     @Operation(summary = "Extrato bancário", description = "Este end-point é responsavel por realizar o Extrato bancária")

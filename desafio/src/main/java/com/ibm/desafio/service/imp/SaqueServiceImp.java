@@ -20,11 +20,11 @@ public class SaqueServiceImp implements SaqueService {
     @Autowired
     ExtratoService extratoService;
 
-    public ResponseEntity saque(String numeroConta, Double valor){
+    public ResponseEntity saque(String numeroContaSaque, Double valor, String tipoTransacao){
         if(valor <= 0){
             return ResponseEntity.badRequest().body("O valor informado não pode ser 0 ou negativo.");
         }
-        Cliente conta = clienteRepository.findByNumeroContaCliente(numeroConta);
+        Cliente conta = clienteRepository.findByNumeroContaCliente(numeroContaSaque);
         if(conta != null){
             if(conta.getNumero().getSaldo() < valor){
                 return ResponseEntity.badRequest().body("Saldo insuficiente para realizar o saque.");
@@ -32,8 +32,8 @@ public class SaqueServiceImp implements SaqueService {
             Double saldo = conta.getNumero().getSaldo() - valor;
             conta.getNumero().setSaldo(saldo);
             contaRepository.save(conta.getNumero());
-            extratoService.gerarExtrato(conta, "saque", valor);
-            return ResponseEntity.ok("Saque de R$:"+valor+" realizado com sucesso!");
+            extratoService.gerarExtrato(conta, tipoTransacao, valor);
+            return ResponseEntity.ok(tipoTransacao + " realizado com sucesso!");
         }
         return ResponseEntity.badRequest().body("Conta não encontrada.");
     }

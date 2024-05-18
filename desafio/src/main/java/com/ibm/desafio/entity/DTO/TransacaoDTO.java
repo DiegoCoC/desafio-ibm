@@ -6,6 +6,15 @@ public class TransacaoDTO {
 
     private String numeroConta;
     private Double valor;
+    private String tipoTransacao;
+
+    public String getTipoTransacao() {
+        return tipoTransacao;
+    }
+
+    public void setTipoTransacao(String tipoTransacao) {
+        this.tipoTransacao = tipoTransacao;
+    }
 
     public String getNumeroConta() {
         return numeroConta;
