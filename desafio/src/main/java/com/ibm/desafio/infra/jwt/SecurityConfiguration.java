@@ -13,10 +13,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration {
+public class SecurityConfiguration implements WebMvcConfigurer {
 
     @Autowired
     SecurityFilter securityFilter;
@@ -29,6 +31,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/cliente/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/transacao/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "http://localhost:4200/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/transacao/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/usuario/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/usuario/**").permitAll()
@@ -37,6 +40,14 @@ public class SecurityConfiguration {
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
+    }
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:4200") // Permitir solicitações apenas do frontend Angular
+                .allowedMethods("*")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 
     @Bean

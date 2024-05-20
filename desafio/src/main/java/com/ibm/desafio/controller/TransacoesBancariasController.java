@@ -48,7 +48,7 @@ public class TransacoesBancariasController {
     }
 
     @Operation(summary = "Extrato bancário", description = "Este end-point é responsavel por realizar o Extrato bancária")
-    @GetMapping("/extrato")
+    @PostMapping("/extrato")
     public ResponseEntity extrato(@RequestBody @Validated ExtratoRequestDTO numeroConta) {
 
         return  extratoService.buscarExtrato(numeroConta);

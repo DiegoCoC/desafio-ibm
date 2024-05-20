@@ -21,6 +21,7 @@ public class AuthenticationController {
     @Operation(summary = "Faz autenticação de usuário", description = "Este endpoint faz a autenticação de usuário e retorna um token para poder ter acesso aos demais endpoints.")
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
+        System.out.println( "chamado" + data.login() + " " + data.password());
 
         return authenticationService.login(data);
     }
