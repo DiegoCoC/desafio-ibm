@@ -50,6 +50,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .allowCredentials(true);
     }
 
+
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
